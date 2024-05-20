@@ -33,18 +33,22 @@ impl Player{
         let mut final_velocity:Vec2 = Vec2 { x: 0.0, y: 0.0};
 
         if is_key_down(KeyCode::Up) {
-            final_velocity.y += -1.0 * PLAYER_SPEED
+            final_velocity.y += -1.0;
         }
         if is_key_down(KeyCode::Down) {
-            final_velocity.y += 1.0 * PLAYER_SPEED
+            final_velocity.y += 1.0;
         }
         if is_key_down(KeyCode::Left) {
-            final_velocity.x += -1.0 * PLAYER_SPEED
+            final_velocity.x += -1.0;
         }
         if is_key_down(KeyCode::Right) {
-            final_velocity.x += 1.0 * PLAYER_SPEED
+            final_velocity.x += 1.0;
         }
-
-        self.body.velocity = final_velocity
+        if final_velocity.x == 0.0 && final_velocity.y == 0.0 {
+            self.body.velocity = Vec2 {x: 0.0, y: 0.0};
+            return;
+        }
+        self.body.velocity = final_velocity.normalize() * PLAYER_SPEED;
+        //println!("{}", self.body.velocity);
     }
 }
