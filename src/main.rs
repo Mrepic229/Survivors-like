@@ -9,7 +9,6 @@ use actor::Actor;
 use player::Player;
 use enemy::{Enemy, EnemyVec};
 use macroquad::prelude::*;
-use util::get_random_offscreen_pos;
 
 
 #[macroquad::main("BasicShapes")]
